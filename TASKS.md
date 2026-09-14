@@ -25,5 +25,5 @@
 
 ## P3
 
-- [ ] 전체 런칭 QA 및 실제 배포 환경 점검 (GitHub main push 완료; Cloudflare Pages GitHub 저장소 목록에 `emfls-aquarium` 미노출로 대기)
+- [x] 전체 런칭 QA 및 실제 배포 환경 점검 (`emfls-aquarium.pages.dev` 배포 및 `aquarium.emfls.com` production QA 완료)
 - [x] Pre-launch: 체크리스트 localStorage 손상 JSON을 안전하게 무시하고 초기 상태로 복구

@@ -142,3 +142,12 @@
 - Pages 프로젝트 생성, `main` branch 설정, 빌드 설정, `*.pages.dev` 배포, `aquarium.emfls.com` 연결은 저장소가 목록에 나타나지 않아 진행하지 않았다.
 - Git URL fallback이나 Workers 생성 흐름은 사용하지 않았고, 다른 Pages 프로젝트·subdomain·DNS 레코드도 변경하지 않았다.
 - 현재 상태는 `LOCAL: READY FOR PRODUCTION / PRODUCTION: NOT YET VERIFIED`이며, Cloudflare GitHub App의 저장소 접근 목록 반영이 production 배포 blocker다.
+
+## 2026-09-15 — Cloudflare Pages production deployment
+
+- Cloudflare Pages GitHub 연결을 재확인한 결과 `emfls/emfls-aquarium`이 저장소 목록에 노출되어 전용 Pages 프로젝트 `emfls-aquarium`을 생성했다.
+- Production branch는 `main`, build command는 `npm run build`, output directory는 `dist`로 설정했다. 배포 로그에서 commit `f35b83801106ddb17bf2599121fe8a6258560efb`를 clone하고 Astro static build가 `dist`에 성공한 것을 확인했다.
+- 최초 Pages URL `https://emfls-aquarium.pages.dev/`가 정상 로드되었고, Cloudflare에서 `aquarium.emfls.com` custom domain을 해당 프로젝트에 연결했다. DNS는 Pages가 제시한 Aquarium 전용 CNAME(`aquarium` → `emfls-aquarium.pages.dev`)만 활성화했다.
+- 실제 `https://aquarium.emfls.com/`에서 production QA를 수행했다. 홈, Species index와 베타·네온테트라 상세, Guides index와 환수 상세, 수조 물량 계산기, 입문 체크리스트, 합사 확인, About, Privacy, Contact, Species 이미지 및 이미지 fallback을 확인했다.
+- 도감 검색·필터 UI, 계산기 기본값(63.0 L / 53.5 L), checklist 31개·0%, compatibility 베타+구피 결과, canonical/OG 기반 페이지 렌더링과 내부 링크가 production에서 정상 표시되었다. 존재하지 않는 경로, robots.txt, sitemap.xml도 별도 확인 대상으로 점검했다.
+- production 판정은 `LOCAL: READY FOR PRODUCTION / PRODUCTION: LIVE`로 갱신했다. 다른 EMFLS Pages 프로젝트·subdomain·DNS 레코드는 변경하지 않았다.

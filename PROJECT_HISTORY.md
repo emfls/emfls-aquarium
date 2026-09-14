@@ -120,6 +120,13 @@
 - QA에서 checklist가 손상된 localStorage JSON을 `JSON.parse`에서 예외 처리하지 않는 HIGH 항목을 발견했다. 현재 인라인 스크립트를 안전하게 정리해 다음 pre-launch 수정으로 남겼다.
 - production DNS·실제 배포 URL은 이 환경에서 검증하지 않았다. 최종 판정은 `LOCAL: READY AFTER FIXES / PRODUCTION: NOT YET VERIFIED`다.
 
+## 2026-09-15 — Production deployment handoff
+
+- `emfls-aquarium`의 로컬 검증을 다시 실행해 `npm run check` 0 errors/0 warnings/0 hints, `npm run build` 28 pages 성공을 확인했다.
+- `main`에 초기 커밋 `dc810a2`를 만들고 정확한 remote `https://github.com/emfls/emfls-aquarium.git`에 push했다. `.gitignore`로 `node_modules`, `dist`, `.astro`는 제외하고 소스·문서·검증된 이미지 4종은 포함했다.
+- Cloudflare 계정의 현재 Pages 목록에는 `emfls-aquarium` 프로젝트가 없고 GitHub 연결 목록에도 해당 저장소가 노출되지 않았다. Git URL fallback은 Workers 프로젝트 생성 흐름으로 전환되어 잘못된 배포를 만들 수 있으므로 중단했다.
+- 다른 Cloudflare 프로젝트, 다른 subdomain, DNS 레코드는 변경하지 않았다. Pages 프로젝트 생성과 `aquarium.emfls.com` 연결은 GitHub 앱 저장소 권한 또는 Cloudflare Pages 전용 연결을 확보한 뒤 진행해야 한다.
+
 ## 2026-09-15 — Checklist storage recovery fix
 
 - `/tools/aquarium-checklist/`의 기존 `{checkId: boolean}` localStorage 스키마를 유지하면서 `readState()`와 `writeState()` 방어 계층을 추가했다.

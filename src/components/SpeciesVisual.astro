@@ -1,0 +1,7 @@
+---
+import type { Species } from '../data/species';
+interface Props { item: Species; context?: 'card' | 'detail'; }
+const { item, context = 'card' } = Astro.props;
+const image = item.image;
+---
+{image ? <figure class={`species-visual species-visual--${context}`}><img src={image.src} alt={image.alt} width={image.width} height={image.height} loading={context === 'detail' ? 'eager' : 'lazy'} decoding="async" />{image.author && <figcaption>Photo: {image.author} · <a href={image.sourceUrl} target="_blank" rel="noreferrer">{image.license}</a></figcaption>}</figure> : <div class={`species-fallback species-fallback--${context}`} aria-label={`${item.name} specimen mark`} role="img"><span class="fallback-orbit"></span><span class="fallback-mark">{item.name.slice(0, 1)}</span><span class="fallback-label">{item.category} / {item.scientificName}</span></div>}

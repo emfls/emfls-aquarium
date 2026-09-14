@@ -1,0 +1,9 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+interface Props { title?: string; description?: string; }
+const { title = 'Aquarium Field Guide', description = '열대어, 수초, 새우부터 수질과 어항 관리까지 다루는 아쿠아리움 전문 가이드.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://aquarium.emfls.com');
+---
+<!doctype html><html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><link rel="icon" href="/favicon.svg" /><title>{title} · Aquarium</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /></head><body><SiteHeader /><main><slot /></main><SiteFooter /></body></html>

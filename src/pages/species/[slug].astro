@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { species } from '../../data/species';
+import SpeciesVisual from '../../components/SpeciesVisual.astro';
+export function getStaticPaths(){ return species.map((item) => ({ params: { slug: item.slug }, props: { item } })); }
+const { item } = Astro.props;
+const range = (value: { min: number; max: number }, unit = '') => `${value.min}–${value.max}${unit}`;
+const guideLinks = item.category === '새우/달팽이' ? ['water-temperature', 'feeding', 'aquatic-plants'] : item.activityZone === '저층' ? ['filtration', 'feeding', 'water-change'] : ['water-temperature', 'feeding', 'water-change'];
+---
+<BaseLayout title={`${item.name} 도감`} description={item.summary}>
+<div class="container page-intro specimen-intro"><a class="back-link" href="/species/">← 생물 도감</a><span class="eyebrow">SPECIMEN / {item.category}</span><h1>{item.name}</h1><p class="latin">{item.commonNameEn} · {item.scientificName}</p><p>{item.summary}</p><SpeciesVisual item={item} context="detail" /></div>
+<section class="section profile-section"><div class="container"><div class="section-head"><div><span class="eyebrow">01 / Quick facts</span><h2>핵심 사육 정보</h2></div></div><div class="fact-grid"><div class="fact"><span>ADULT SIZE</span><strong>{range(item.adultSizeCm, ' cm')}</strong></div><div class="fact"><span>TEMPERATURE</span><strong>{range(item.temperatureC, '°C')}</strong></div><div class="fact"><span>pH</span><strong>{range(item.ph)}</strong></div><div class="fact"><span>MINIMUM TANK</span><strong>{item.minimumTankLiters} L+</strong></div><div class="fact"><span>LIFESPAN</span><strong>{range(item.lifespanYears, ' years')}</strong></div><div class="fact"><span>CARE</span><strong>{item.careDifficulty}</strong></div></div></div></section>
+<section class="section"><div class="container profile-columns"><div class="profile-block"><span class="eyebrow">02 / Care profile</span><h2>사육 프로필</h2><dl><dt>성격</dt><dd>{item.temperament}</dd><dt>먹이</dt><dd>{item.diet.join(' · ')}</dd><dt>활동 영역</dt><dd>{item.activityZone}</dd><dt>권장 사육 방식</dt><dd>{item.recommendedKeeping}</dd></dl></div><div class="profile-block"><span class="eyebrow">03 / Compatibility</span><h2>합사 특성</h2><div class="rating-row"><span>합사 난이도</span><strong>{item.compatibilityDifficulty}</strong></div><p>{item.cautions.join(' ')}</p></div></div></section>
+<section class="section"><div class="container profile-columns"><div class="profile-block"><span class="eyebrow">04 / Breeding</span><h2>번식</h2><div class="rating-row"><span>번식 난이도</span><strong>{item.breedingDifficulty}</strong></div><p>{item.breedingNotes}</p></div><div class="profile-block"><span class="eyebrow">05 / Recommendation</span><h2>추천 대상</h2><p>{item.recommendedFor}</p></div></div></section>
+<section class="section sources-section"><div class="container"><span class="eyebrow">REFERENCES</span><h2>참고 자료</h2><ul class="sources">{item.sources.map((source) => <li><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a><small>확인일 {source.accessedAt}</small></li>)}</ul><div class="page-actions"><a href="/species/">생물 도감 목록</a><a href="/guides/">관리 가이드</a><a href="/tools/">Aquarium Tools</a></div></div></section>
+<section class="section"><div class="container"><span class="eyebrow">CARE / RELATED</span><h2>관련 관리 가이드</h2><div class="page-actions">{guideLinks.map((slug) => <a href={`/guides/${slug}/`}>{slug.replaceAll('-', ' ') } ↗</a>)}<a href="/tools/compatibility/">이 생물의 합사 확인하기 ↗</a></div></div></section>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { checklistSteps, checklistItems } from '../../data/checklist';
+---
+<BaseLayout title="수조 입문 체크리스트" description="수조 준비부터 초기 관리까지 단계별로 확인하는 Aquarium Field Guide 체크리스트.">
+  <div class="container page-intro checklist-intro"><a class="back-link" href="/tools/">← Aquarium Tools</a><span class="eyebrow">TOOLS / STARTER CHECKLIST</span><h1>수조 입문 체크리스트</h1><p>수조 준비부터 생물 투입 후 초기 관리까지, 지금 확인할 준비 항목을 단계별로 살펴보세요.</p></div>
+  <section class="section checklist-progress-section"><div class="container checklist-progress"><div><span class="eyebrow">PREPARATION PROGRESS</span><h2><span id="checked-count">0</span> / {checklistItems.length} 완료</h2></div><div class="progress-wrap"><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><strong id="progress-percent">0%</strong></div><p>이 체크리스트는 준비를 돕는 참고 도구입니다. 모든 항목을 확인해도 생물과 수조의 상태를 계속 관찰하세요.</p></div></section>
+  <section class="section checklist-body"><div class="container">{checklistSteps.map((step) => <section class="checklist-step" aria-labelledby={`step-${step.id}`}><div class="step-heading"><span class="step-number">{step.number}</span><div><span class="eyebrow">STEP {step.number}</span><h2 id={`step-${step.id}`}>{step.title}</h2><p>{step.summary}</p></div></div><div class="check-items">{step.items.map((item) => <label class="check-item"><input type="checkbox" data-check-id={item.id} /><span class="checkmark" aria-hidden="true"></span><span>{item.label}</span></label>)}</div>{step.relatedLinks && <div class="check-links">{step.relatedLinks.map((link) => <a href={link.href}>{link.label} ↗</a>)}</div>}</section>)}<div class="checklist-complete" id="complete-message" hidden><span class="eyebrow">READY TO REVIEW</span><h2>기본 준비 체크 완료</h2><p>체크리스트의 모든 항목을 확인했습니다. 실제 수조의 수질과 생물 상태는 계속 관찰하며 조정하세요.</p></div><div class="checklist-actions"><button type="button" id="reset-checklist" class="reset-button">체크리스트 초기화</button><p>체크 상태는 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p></div></div></section>
+  <script>
+    const storageKey = 'aquarium-starter-checklist';
+    const boxes = Array.from(document.querySelectorAll<HTMLInputElement>('[data-check-id]'));
+    const getEl = (id: string) => document.querySelector(`#${id}`) as HTMLElement;
+    const checkedCount = getEl('checked-count');
+    const progressPercent = getEl('progress-percent');
+    const progressFill = getEl('progress-fill');
+    const completeMessage = getEl('complete-message');
+    const resetButton = getEl('reset-checklist') as HTMLButtonElement;
+    const defaultState = () => Object.fromEntries(boxes.map((box) => [box.dataset.checkId || '', false]));
+    const validState = (value: unknown): value is Record<string, boolean> => {
+      if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+      return Object.values(value).every((item) => typeof item === 'boolean');
+    };
+    const readState = (): Record<string, boolean> => {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        if (!raw) return defaultState();
+        const parsed: unknown = JSON.parse(raw);
+        return validState(parsed) ? parsed : defaultState();
+      } catch {
+        return defaultState();
+      }
+    };
+    const writeState = (state: Record<string, boolean>) => {
+      try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch { /* storage is optional */ }
+    };
+    const saved = readState();
+    boxes.forEach((box) => { box.checked = saved[box.dataset.checkId || ''] === true; box.addEventListener('change', update); });
+    function update() {
+      const count = boxes.filter((box) => box.checked).length;
+      const percent = Math.round((count / boxes.length) * 100);
+      checkedCount.textContent = count.toString();
+      progressPercent.textContent = `${percent}%`;
+      progressFill.style.width = `${percent}%`;
+      completeMessage.hidden = count !== boxes.length;
+      writeState(Object.fromEntries(boxes.map((box) => [box.dataset.checkId || '', box.checked])));
+    }
+    resetButton.addEventListener('click', () => { if (!window.confirm('체크한 항목을 모두 초기화할까요?')) return; boxes.forEach((box) => { box.checked = false; }); update(); });
+    update();
+  </script>
+</BaseLayout>

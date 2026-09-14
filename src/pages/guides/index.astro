@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { guides } from '../../data/guides';
+---
+<BaseLayout title="관리 가이드" description="수질, 환수, 수온, 여과와 어항 세팅의 기초를 정리한 Aquarium Field Manual."><div class="container page-intro"><span class="eyebrow">GUIDES / FIELD MANUAL</span><h1>어항 관리 가이드</h1><p>검색자가 지금 마주한 관리 문제를 빠르게 이해하고 다음 행동을 정할 수 있도록, 핵심 원칙과 실행 순서로 정리합니다.</p></div><section class="section"><div class="container guide-grid">{guides.map((guide) => <a class="guide-card" href={`/guides/${guide.slug}/`}><span class="eyebrow">{guide.category}</span><h2>{guide.title}</h2><p>{guide.summary}</p><span class="text-link">가이드 읽기 →</span></a>)}</div></section></BaseLayout>

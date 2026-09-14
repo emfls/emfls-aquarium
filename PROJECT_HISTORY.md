@@ -134,3 +134,11 @@
 - localStorage 읽기·쓰기 자체가 차단되는 브라우저에서도 checkbox와 진행률은 현재 세션에서 계속 동작한다. 저장 실패를 사용자에게 크게 노출하지 않는다.
 - 초기화 버튼과 진행률 계산은 기존 흐름을 유지하며, 복구 직후에도 0/31·0% 또는 유효하게 복원된 개수로 표시된다.
 - 검증: `npm run check` 0 errors/0 warnings/0 hints, `npm run build` 28 pages 성공. 최종 Local 판정은 `READY FOR PRODUCTION`, production은 아직 검증하지 않았다.
+
+## 2026-09-15 — Cloudflare Pages repository access recheck
+
+- 사용자가 Cloudflare Workers and Pages GitHub App에 `emfls/emfls-aquarium` 접근 권한을 추가했다고 알려 재확인했다.
+- Cloudflare Pages 전용 GitHub 저장소 선택 화면에서 연결 계정 `emfls`를 확인했지만, 저장소 목록에는 여전히 `emfls-site`만 표시되고 `emfls-aquarium`은 노출되지 않았다.
+- Pages 프로젝트 생성, `main` branch 설정, 빌드 설정, `*.pages.dev` 배포, `aquarium.emfls.com` 연결은 저장소가 목록에 나타나지 않아 진행하지 않았다.
+- Git URL fallback이나 Workers 생성 흐름은 사용하지 않았고, 다른 Pages 프로젝트·subdomain·DNS 레코드도 변경하지 않았다.
+- 현재 상태는 `LOCAL: READY FOR PRODUCTION / PRODUCTION: NOT YET VERIFIED`이며, Cloudflare GitHub App의 저장소 접근 목록 반영이 production 배포 blocker다.

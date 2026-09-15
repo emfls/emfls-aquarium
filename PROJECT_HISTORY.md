@@ -188,4 +188,5 @@
 - 이미지 규격은 1200×630이며, deep water·field guide·specimen 분위기와 Aquarium 고유 색상 체계를 사용했다. 다른 EMFLS 사이트의 자산은 사용하지 않았다.
 - `src/layouts/BaseLayout.astro`의 공통 head에서 production canonical 기준 절대 URL `https://aquarium.emfls.com/images/og/aquarium-default.png`를 `og:image`와 `twitter:image`에 연결하고 `twitter:card`를 `summary_large_image`로 변경했다. Species별 이미지 자동 연결은 추가하지 않았다.
 - `dist` 29개 HTML에서 OG/Twitter image가 각각 1회씩 존재하고 URL이 실제 빌드 파일과 일치하는 것을 확인했다.
-- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. Production 배포 및 실제 HTML 확인은 push 후 수행한다.
+- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다.
+- 커밋 `046f4e7815ef9077ddfeb0090b9f3654c51eb2e0`를 `main`에 push했고 Cloudflare Pages 반영 후 `https://aquarium.emfls.com/`에서 `og:image` 1회, `twitter:image` 1회, `summary_large_image`를 직접 확인했다. 이미지 URL은 `https://aquarium.emfls.com/images/og/aquarium-default.png`이며 실제 production 경로로 연결된다.

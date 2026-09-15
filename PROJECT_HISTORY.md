@@ -181,3 +181,11 @@
 - `https://emfls-aquarium.pages.dev/`에서는 GA4와 AdSense 외부 script가 삽입되지 않는 것을 확인했다.
 - 주요 Species/Guide/Tool/About/Privacy/Contact 및 베타 상세 페이지를 브라우저에서 확인했다. sitemap·robots·404는 정적 산출물과 production 경로를 기준으로 점검했으며, 브라우저 확장 환경에서는 robots.txt 직접 열기가 차단됐다.
 - 최종 판정은 `NETWORK BASELINE V1: PASS WITH BACKLOG`다. 남은 backlog는 Aquarium 전용 1200×630 OG 이미지, 남은 Species 이미지 6종, 네트워크 수준 자동 QA다.
+
+## 2026-09-15 — Aquarium default social preview image
+
+- Aquarium 전용 기본 Social Preview 이미지를 `public/images/og/aquarium-default.png`에 저장했다.
+- 이미지 규격은 1200×630이며, deep water·field guide·specimen 분위기와 Aquarium 고유 색상 체계를 사용했다. 다른 EMFLS 사이트의 자산은 사용하지 않았다.
+- `src/layouts/BaseLayout.astro`의 공통 head에서 production canonical 기준 절대 URL `https://aquarium.emfls.com/images/og/aquarium-default.png`를 `og:image`와 `twitter:image`에 연결하고 `twitter:card`를 `summary_large_image`로 변경했다. Species별 이미지 자동 연결은 추가하지 않았다.
+- `dist` 29개 HTML에서 OG/Twitter image가 각각 1회씩 존재하고 URL이 실제 빌드 파일과 일치하는 것을 확인했다.
+- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. Production 배포 및 실제 HTML 확인은 push 후 수행한다.

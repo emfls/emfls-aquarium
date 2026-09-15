@@ -37,5 +37,5 @@
 - [x] Editorial Policy 및 repo baseline 문서
 - [x] 접근성 skip link 및 headers baseline
 - [x] trailingSlash always 및 Twitter 기본 metadata
-- [ ] Aquarium 전용 1200×630 OG image 제작
+- [x] Aquarium 전용 1200×630 OG image 제작 및 기본 OG/Twitter metadata 연결
 - [ ] 남은 Species 이미지 6종 확보

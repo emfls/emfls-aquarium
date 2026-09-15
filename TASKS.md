@@ -29,6 +29,7 @@
 - [x] Pre-launch: 체크리스트 localStorage 손상 JSON을 안전하게 무시하고 초기 상태로 복구
 - [x] Google Analytics 4 기본 page view 연결 및 Privacy 문구 반영
 - [x] 네이버 서치어드바이저 소유권 인증 (meta 적용 및 production 확인 완료)
+- [x] 전체 디자인 QA 및 320/375px 모바일 overflow 개선
 
 ## Network Baseline v1
 

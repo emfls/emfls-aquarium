@@ -32,5 +32,7 @@ Deep water `#071B20`, panel `#0D292E`, line `#1E4145`, ink `#DBEEEA`, muted `#8C
 ## Responsive behavior
 모바일에서 navigation은 줄바꿈 가능하며, 그리드는 1열, hero 도형은 축소한다. 터치 대상과 본문 대비를 유지한다.
 
+문서형 Trust 페이지는 얇은 패널과 accent heading으로 긴 텍스트를 구획한다. Hero와 카드 제목은 문장 중간의 강제 개행을 피하고 viewport에 따라 자연스럽게 줄바꿈한다. 사진 figure는 기본 브라우저 좌우 margin을 제거해 320px 폭에서도 콘텐츠가 넘치지 않도록 한다.
+
 ## Forbidden patterns
 과도한 네온, 게임 UI, glassmorphism, 자동 재생 애니메이션, 장식 때문에 정보가 묻히는 레이아웃을 금지한다.

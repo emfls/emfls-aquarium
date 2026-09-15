@@ -197,6 +197,15 @@
 - `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. `dist/naver6dde13e69fe8ec25cd17e085c65c2124.html`이 생성되고 다운로드 원본과 byte-for-byte 동일하며, 잘못된 `dist/public/` 경로에는 생성되지 않았다.
 - 커밋 `233ed9a`를 `main`에 push한 뒤 `https://aquarium.emfls.com/naver6dde13e69fe8ec25cd17e085c65c2124.html`에서 네이버 인증 본문이 정상 반환되는 것을 확인했다. `.html/` 경로는 사용하지 않았다.
 
+## 2026-09-15 — Full visual QA and responsive refinements
+
+- Production과 로컬 브라우저에서 홈, Species 목록·상세, Guides 목록·상세, Tools 3개, About, Privacy, Contact, Editorial Policy, 404를 실제 화면 기준으로 점검했다.
+- 홈 Hero의 강제 br 때문에 문장 마지막 글자가 고립되는 문제를 제거하고, Hero 제목의 자연스러운 반응형 줄바꿈을 적용했다. 홈의 Guide feature 제목도 동일하게 정리했다.
+- About·Privacy·Contact·Editorial Policy의 긴 문서가 평문 덩어리로 보이던 문제를 Aquarium 패널과 accent heading을 사용하는 prose surface로 보강했다. Privacy의 중복 Analytics 문단도 하나로 정리했다.
+- 헤더 링크와 section text link의 터치 여유를 보강하고, 모바일 container 좌우 여백을 18px로 조정했다.
+- 320px에서 Species 상세 사진 figure의 브라우저 기본 좌우 margin으로 327px overflow가 발생하는 것을 확인해 margin: 24px 0 0으로 수정했다. 수정 후 전체 주요 경로에서 horizontal overflow가 없어졌다.
+- 실제 브라우저 검증: desktop 홈·Guide 상세·Checklist·Compatibility, 375px 홈·Species 목록·Guide 상세·Checklist, 320px Compatibility·Species 상세 및 전체 주요 경로 overflow 검사. 기존 Species 사진과 fallback, 계산기·체크리스트·합사 기능은 변경하지 않았다.
+
 ## 2026-09-15 — Naver verification file replacement
 
 - 네이버에서 새로 받은 `naver3cf9d8b84cbcd1d42f04d7f7d2500573.html`로 기존 인증 파일을 교체했다.

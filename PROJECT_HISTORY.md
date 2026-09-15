@@ -158,3 +158,9 @@
 - Google Tag Manager는 사용하지 않았고, custom event나 검색어·계산기·체크리스트·합사 선택값 전송도 추가하지 않았다. 기본 page view의 URL query string 전송 가능성을 피하기 위해 자동 page view를 끄고 query string이 제거된 경로 기반 표준 `page_view`만 전송한다.
 - `/privacy/`에 Google Analytics 4를 사이트 이용 현황 분석 목적으로 사용한다는 사실을 실제 구현 범위 안에서 반영했다.
 - `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 Measurement ID와 `gtag.js`를 포함하며 GTM bootstrap match는 0건이고, 관리자 실시간 수집은 별도 접근 권한이 없어 확인하지 않는다.
+
+## 2026-09-15 — Naver Search Advisor verification meta
+
+- 공통 `src/layouts/BaseLayout.astro`의 `<head>`에 네이버 서치어드바이저 소유권 인증 meta를 1회 추가했다.
+- Verification token은 `aa475bac741815fc07b8d4e5157642f70bf53ec8`이며 개별 페이지에 별도로 삽입하지 않았다.
+- 기존 GA4, canonical, OG metadata는 변경하지 않았다. `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 인증 meta와 token을 1회씩 포함하며 production 반영은 push 후 확인한다.

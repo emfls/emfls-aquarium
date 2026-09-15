@@ -7,7 +7,7 @@ const { title = 'Aquarium Field Guide', description = '열대어, 수초, 새우
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://aquarium.emfls.com');
 const gaMeasurementId = 'G-9QXJ3H4LSB';
 ---
-<!doctype html><html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><link rel="icon" href="/favicon.svg" /><title>{title} · Aquarium</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} />{import.meta.env.PROD && <><script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>
+<!doctype html><html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><meta name="naver-site-verification" content="aa475bac741815fc07b8d4e5157642f70bf53ec8" /><link rel="icon" href="/favicon.svg" /><title>{title} · Aquarium</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} />{import.meta.env.PROD && <><script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());

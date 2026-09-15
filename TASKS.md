@@ -32,7 +32,7 @@
 
 ## Network Baseline v1
 
-- [ ] Baseline audit production 재배포 및 QA
+- [x] Baseline audit production 재배포 및 QA
 - [x] AdSense production custom-domain-only loader
 - [x] Editorial Policy 및 repo baseline 문서
 - [x] 접근성 skip link 및 headers baseline

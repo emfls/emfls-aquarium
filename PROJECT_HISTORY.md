@@ -175,4 +175,9 @@
 - Twitter 기본 title/description/card metadata, skip link, Cloudflare `_headers`의 nosniff/referrer policy, Editorial Policy 페이지와 footer 링크를 추가했다. sitemap에는 Editorial Policy URL을 포함했다.
 - CONTENT_POLICY.md, LAUNCH_CHECKLIST.md, REPOSITORY_CONNECTION.md를 추가했다. 다른 EMFLS repo·Cloudflare 프로젝트·DNS는 변경하지 않았다.
 - Structured data와 page-specific OG image는 실제 데이터/asset이 준비되지 않아 추가하지 않았다.
-- 이번 audit 기준 `npm run check` 0 errors/0 warnings/0 hints, build 29 pages 성공. Production 재배포 및 전체 baseline QA는 push 후 수행한다.
+- 이번 audit 기준 `npm run check` 0 errors/0 warnings/0 hints, build 29 pages 성공.
+- 커밋 `a75d8fdf42ff0e796d2c0c7b4864e49a4ca9e71f`를 `main`에 push했고 Cloudflare Pages 자동 배포가 production에 반영됐다.
+- `https://aquarium.emfls.com/`에서 Editorial Policy 링크, canonical, Naver verification 1회, GA4 및 AdSense runtime loader를 확인했다.
+- `https://emfls-aquarium.pages.dev/`에서는 GA4와 AdSense 외부 script가 삽입되지 않는 것을 확인했다.
+- 주요 Species/Guide/Tool/About/Privacy/Contact 및 베타 상세 페이지를 브라우저에서 확인했다. sitemap·robots·404는 정적 산출물과 production 경로를 기준으로 점검했으며, 브라우저 확장 환경에서는 robots.txt 직접 열기가 차단됐다.
+- 최종 판정은 `NETWORK BASELINE V1: PASS WITH BACKLOG`다. 남은 backlog는 Aquarium 전용 1200×630 OG 이미지, 남은 Species 이미지 6종, 네트워크 수준 자동 QA다.

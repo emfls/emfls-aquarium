@@ -151,3 +151,10 @@
 - 실제 `https://aquarium.emfls.com/`에서 production QA를 수행했다. 홈, Species index와 베타·네온테트라 상세, Guides index와 환수 상세, 수조 물량 계산기, 입문 체크리스트, 합사 확인, About, Privacy, Contact, Species 이미지 및 이미지 fallback을 확인했다.
 - 도감 검색·필터 UI, 계산기 기본값(63.0 L / 53.5 L), checklist 31개·0%, compatibility 베타+구피 결과, canonical/OG 기반 페이지 렌더링과 내부 링크가 production에서 정상 표시되었다. 존재하지 않는 경로, robots.txt, sitemap.xml도 별도 확인 대상으로 점검했다.
 - production 판정은 `LOCAL: READY FOR PRODUCTION / PRODUCTION: LIVE`로 갱신했다. 다른 EMFLS Pages 프로젝트·subdomain·DNS 레코드는 변경하지 않았다.
+
+## 2026-09-15 — Google Analytics 4 connection
+
+- 공통 `src/layouts/BaseLayout.astro`에 Google의 기본 `gtag.js` 방식으로 GA4 Measurement ID `G-9QXJ3H4LSB`를 production build에서만 한 번 로드하도록 추가했다.
+- Google Tag Manager는 사용하지 않았고, custom event나 검색어·계산기·체크리스트·합사 선택값 전송도 추가하지 않았다. 기본 page view의 URL query string 전송 가능성을 피하기 위해 자동 page view를 끄고 query string이 제거된 경로 기반 표준 `page_view`만 전송한다.
+- `/privacy/`에 Google Analytics 4를 사이트 이용 현황 분석 목적으로 사용한다는 사실을 실제 구현 범위 안에서 반영했다.
+- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 Measurement ID와 `gtag.js`를 포함하며 GTM bootstrap match는 0건이고, 관리자 실시간 수집은 별도 접근 권한이 없어 확인하지 않는다.

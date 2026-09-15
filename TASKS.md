@@ -27,3 +27,4 @@
 
 - [x] 전체 런칭 QA 및 실제 배포 환경 점검 (`emfls-aquarium.pages.dev` 배포 및 `aquarium.emfls.com` production QA 완료)
 - [x] Pre-launch: 체크리스트 localStorage 손상 JSON을 안전하게 무시하고 초기 상태로 복구
+- [x] Google Analytics 4 기본 page view 연결 및 Privacy 문구 반영

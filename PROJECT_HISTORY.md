@@ -196,3 +196,10 @@
 - 네이버 원본 파일 `naver6dde13e69fe8ec25cd17e085c65c2124.html`을 레포 루트에서 `public/naver6dde13e69fe8ec25cd17e085c65c2124.html`로 이동했다. 파일명과 원본 내용은 변경하지 않았다.
 - `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. `dist/naver6dde13e69fe8ec25cd17e085c65c2124.html`이 생성되고 다운로드 원본과 byte-for-byte 동일하며, 잘못된 `dist/public/` 경로에는 생성되지 않았다.
 - 커밋 `233ed9a`를 `main`에 push한 뒤 `https://aquarium.emfls.com/naver6dde13e69fe8ec25cd17e085c65c2124.html`에서 네이버 인증 본문이 정상 반환되는 것을 확인했다. `.html/` 경로는 사용하지 않았다.
+
+## 2026-09-15 — Naver verification file replacement
+
+- 네이버에서 새로 받은 `naver3cf9d8b84cbcd1d42f04d7f7d2500573.html`로 기존 인증 파일을 교체했다.
+- 새 파일은 `public/naver3cf9d8b84cbcd1d42f04d7f7d2500573.html`에 저장했고, 기존 `naver6dde13e69fe8ec25cd17e085c65c2124.html`은 제거했다. 원본 내용과 파일명은 변경하지 않았다.
+- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. `dist` 루트에 새 파일이 생성되고 기존 파일은 생성되지 않는 것을 확인했다.
+- Cloudflare Pages production 반영 후 `https://aquarium.emfls.com/naver3cf9d8b84cbcd1d42f04d7f7d2500573.html`에서 새 네이버 인증 본문이 정상 반환되는 것을 확인했다.

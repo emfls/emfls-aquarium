@@ -163,4 +163,5 @@
 
 - 공통 `src/layouts/BaseLayout.astro`의 `<head>`에 네이버 서치어드바이저 소유권 인증 meta를 1회 추가했다.
 - Verification token은 `aa475bac741815fc07b8d4e5157642f70bf53ec8`이며 개별 페이지에 별도로 삽입하지 않았다.
-- 기존 GA4, canonical, OG metadata는 변경하지 않았다. `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 인증 meta와 token을 1회씩 포함하며 production 반영은 push 후 확인한다.
+- 기존 GA4, canonical, OG metadata는 변경하지 않았다. `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 인증 meta와 token을 1회씩 포함한다.
+- Commit `2140a5a`를 `main`에 push한 뒤 Cloudflare Pages Production 배포가 해당 commit으로 성공했다. 실제 `https://aquarium.emfls.com/` HTML에서 `naver-site-verification` 1개와 지정 token 1개를 직접 확인했다.

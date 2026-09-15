@@ -205,6 +205,7 @@
 - 헤더 링크와 section text link의 터치 여유를 보강하고, 모바일 container 좌우 여백을 18px로 조정했다.
 - 320px에서 Species 상세 사진 figure의 브라우저 기본 좌우 margin으로 327px overflow가 발생하는 것을 확인해 margin: 24px 0 0으로 수정했다. 수정 후 전체 주요 경로에서 horizontal overflow가 없어졌다.
 - 실제 브라우저 검증: desktop 홈·Guide 상세·Checklist·Compatibility, 375px 홈·Species 목록·Guide 상세·Checklist, 320px Compatibility·Species 상세 및 전체 주요 경로 overflow 검사. 기존 Species 사진과 fallback, 계산기·체크리스트·합사 기능은 변경하지 않았다.
+- 후속 Hero line-group 수정 커밋 acc5985를 main에 push했고 production 375px 화면에서 고립된 마지막 글자 없이 의도한 3줄 구성이 반영된 것을 확인했다. Production 375px 전체 주요 경로의 horizontal overflow는 0건이었다.
 
 ## 2026-09-15 — Naver verification file replacement
 

@@ -5,16 +5,22 @@ import '../styles/global.css';
 interface Props { title?: string; description?: string; }
 const { title = 'Aquarium Field Guide', description = '열대어, 수초, 새우부터 수질과 어항 관리까지 다루는 아쿠아리움 전문 가이드.' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://aquarium.emfls.com');
-const gaMeasurementId = 'G-9QXJ3H4LSB';
 ---
-<!doctype html><html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><meta name="naver-site-verification" content="aa475bac741815fc07b8d4e5157642f70bf53ec8" /><link rel="icon" href="/favicon.svg" /><title>{title} · Aquarium</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} />{import.meta.env.PROD && <><script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', gaMeasurementId, { send_page_view: false });
-  gtag('event', 'page_view', {
-    page_title: document.title,
-    page_location: window.location.origin + window.location.pathname,
-    page_path: window.location.pathname
-  });
-</script></>}</head><body><SiteHeader /><main><slot /></main><SiteFooter /></body></html>
+<!doctype html><html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><meta name="naver-site-verification" content="aa475bac741815fc07b8d4e5157642f70bf53ec8" /><meta name="theme-color" content="#071b20" /><meta name="theme-color" content="#071b20" /><link rel="icon" href="/favicon.svg" /><title>{title} · Aquarium</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><script is:inline>
+  if (location.hostname === "aquarium.emfls.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    const gaScript = document.createElement("script");
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-9QXJ3H4LSB";
+    document.head.appendChild(gaScript);
+    gtag("js", new Date());
+    gtag("config", "G-9QXJ3H4LSB", { send_page_view: false });
+    gtag("event", "page_view", { page_title: document.title, page_location: location.origin + location.pathname, page_path: location.pathname });
+    const adsenseScript = document.createElement("script");
+    adsenseScript.async = true;
+    adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8830524482034754";
+    adsenseScript.crossOrigin = "anonymous";
+    document.head.appendChild(adsenseScript);
+  }
+</script></head><body><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><SiteHeader /><main id="main-content"><slot /></main><SiteFooter /></body></html>

@@ -29,3 +29,13 @@
 - [x] Pre-launch: 체크리스트 localStorage 손상 JSON을 안전하게 무시하고 초기 상태로 복구
 - [x] Google Analytics 4 기본 page view 연결 및 Privacy 문구 반영
 - [x] 네이버 서치어드바이저 소유권 인증 (meta 적용 및 production 확인 완료)
+
+## Network Baseline v1
+
+- [ ] Baseline audit production 재배포 및 QA
+- [x] AdSense production custom-domain-only loader
+- [x] Editorial Policy 및 repo baseline 문서
+- [x] 접근성 skip link 및 headers baseline
+- [x] trailingSlash always 및 Twitter 기본 metadata
+- [ ] Aquarium 전용 1200×630 OG image 제작
+- [ ] 남은 Species 이미지 6종 확보

@@ -165,3 +165,14 @@
 - Verification token은 `aa475bac741815fc07b8d4e5157642f70bf53ec8`이며 개별 페이지에 별도로 삽입하지 않았다.
 - 기존 GA4, canonical, OG metadata는 변경하지 않았다. `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 28 pages 성공이었다. `dist`의 28개 HTML 모두 인증 meta와 token을 1회씩 포함한다.
 - Commit `2140a5a`를 `main`에 push한 뒤 Cloudflare Pages Production 배포가 해당 commit으로 성공했다. 실제 `https://aquarium.emfls.com/` HTML에서 `naver-site-verification` 1개와 지정 token 1개를 직접 확인했다.
+
+## 2026-09-15 — EMFLS Network Baseline v1 audit
+
+- Aquarium 고유 디자인과 기존 Species·Guide·Tools 구현은 유지하고 공통 인프라만 보강했다.
+- `trailingSlash: 'always'`를 명시했다. 기존 canonical과 내부 링크가 trailing slash 구조를 사용해 production URL 정책과 충돌하지 않는다.
+- GA4는 `location.hostname === 'aquarium.emfls.com'`일 때만 runtime으로 script를 삽입하고, AdSense loader도 같은 조건에서만 삽입한다. pages.dev·localhost·preview에서는 두 loader가 실행되지 않는다. 검색어와 도구 입력값은 전송하지 않는다.
+- Naver verification은 기존 공통 layout meta를 유지했고, AdSense 광고 위치나 slot은 추가하지 않았다. OG image는 실제 asset이 없어 깨진 URL을 만들지 않고 backlog로 남겼다.
+- Twitter 기본 title/description/card metadata, skip link, Cloudflare `_headers`의 nosniff/referrer policy, Editorial Policy 페이지와 footer 링크를 추가했다. sitemap에는 Editorial Policy URL을 포함했다.
+- CONTENT_POLICY.md, LAUNCH_CHECKLIST.md, REPOSITORY_CONNECTION.md를 추가했다. 다른 EMFLS repo·Cloudflare 프로젝트·DNS는 변경하지 않았다.
+- Structured data와 page-specific OG image는 실제 데이터/asset이 준비되지 않아 추가하지 않았다.
+- 이번 audit 기준 `npm run check` 0 errors/0 warnings/0 hints, build 29 pages 성공. Production 재배포 및 전체 baseline QA는 push 후 수행한다.

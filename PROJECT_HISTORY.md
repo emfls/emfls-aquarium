@@ -190,3 +190,9 @@
 - `dist` 29개 HTML에서 OG/Twitter image가 각각 1회씩 존재하고 URL이 실제 빌드 파일과 일치하는 것을 확인했다.
 - `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다.
 - 커밋 `046f4e7815ef9077ddfeb0090b9f3654c51eb2e0`를 `main`에 push했고 Cloudflare Pages 반영 후 `https://aquarium.emfls.com/`에서 `og:image` 1회, `twitter:image` 1회, `summary_large_image`를 직접 확인했다. 이미지 URL은 `https://aquarium.emfls.com/images/og/aquarium-default.png`이며 실제 production 경로로 연결된다.
+
+## 2026-09-15 — Naver HTML verification asset path fix
+
+- 네이버 원본 파일 `naver6dde13e69fe8ec25cd17e085c65c2124.html`을 레포 루트에서 `public/naver6dde13e69fe8ec25cd17e085c65c2124.html`로 이동했다. 파일명과 원본 내용은 변경하지 않았다.
+- `npm run check`는 0 errors/0 warnings/0 hints, `npm run build`는 29 pages 성공이었다. `dist/naver6dde13e69fe8ec25cd17e085c65c2124.html`이 생성되고 다운로드 원본과 byte-for-byte 동일하며, 잘못된 `dist/public/` 경로에는 생성되지 않았다.
+- 커밋 `233ed9a`를 `main`에 push한 뒤 `https://aquarium.emfls.com/naver6dde13e69fe8ec25cd17e085c65c2124.html`에서 네이버 인증 본문이 정상 반환되는 것을 확인했다. `.html/` 경로는 사용하지 않았다.
